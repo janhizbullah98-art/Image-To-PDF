@@ -4,59 +4,100 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tools Hub - Free Online Image Tools</title>
-<meta name="description" content="Tools Hub - Free online tools - Image to PDF, Compress Image, Resize Image, JPG to PNG, PDF to Image, Crop Image.">
+<meta name="description" content="Tools Hub - Free online tools - Image to PDF, Compress Image, Resize Image, JPG to PNG, PDF to Image, Crop Image. 100% free.">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#ffffff;color:#1e293b}
-header{background:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eef2f7;position:sticky;top:0;z-index:100}
-.logo{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#0f172a}
-.logo span{background:#2563eb;color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
-header .badge{font-size:12px;font-weight:600;background:#f1f5f9;color:#475569;padding:7px 12px;border-radius:100px;border:1px solid #e2e8f0}
-.menu-btn{font-size:22px;cursor:pointer;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:6px 10px}
-.hero{text-align:center;padding:48px 20px 10px;max-width:700px;margin:0 auto}
-.hero h1{font-size:38px;line-height:1.15;font-weight:800;letter-spacing:-1px;color:#0f172a}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f8fafc;color:#111}
+header{background:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.06);position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{background:#2563eb;color:#fff;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:bold}
+.logo b{font-size:20px;color:#0f172a;letter-spacing:-0.5px}
+.nav{display:flex;gap:8px;align-items:center}
+.nav a{text-decoration:none;font-size:14px;font-weight:600;padding:9px 16px;border-radius:100px}
+.nav-home{background:#2563eb;color:#fff}
+.nav-contact{background:#f1f5f9;color:#334155;border:1px solid #e2e8f0}
+.nav-contact:hover{background:#e2e8f0}
+.hero{text-align:center;padding:38px 15px 10px;max-width:700px;margin:0 auto}
+.hero h1{font-size:34px;line-height:1.2;letter-spacing:-0.5px}
 .hero h1 span{color:#2563eb}
-.hero p{color:#64748b;margin-top:12px;font-size:16px;line-height:1.5}
-.tools-grid{max-width:760px;margin:32px auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:0 18px}
-.tool-card{background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:24px 14px;text-align:center;text-decoration:none;color:#0f172a;transition:.2s;display:flex;flex-direction:column;align-items:center}
-.tool-card:hover{border-color:#2563eb;box-shadow:0 12px 30px rgba(37,99,235,.10);transform:translateY(-2px)}
-.tool-card .icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.tool-card .icon svg{width:26px;height:26px;stroke-width:1.7}
-.tool-card b{font-size:15px;font-weight:700}
-.tool-card span{font-size:13px;color:#64748b;margin-top:4px;line-height:1.4}
-.c1 .icon{background:#eef2ff}.c1 .icon svg{stroke:#4f46e5}
-.c2 .icon{background:#f0fdf4}.c2 .icon svg{stroke:#15803d}
-.c3 .icon{background:#fff7ed}.c3 .icon svg{stroke:#ea580c}
-.c4 .icon{background:#fdf2f8}.c4 .icon svg{stroke:#be185d}
-.c5 .icon{background:#fef2f2}.c5 .icon svg{stroke:#dc2626}
-.c6 .icon{background:#f0f9ff}.c6 .icon svg{stroke:#0369a1}
-.trust{max-width:760px;margin:28px auto 10px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;padding:0 18px;color:#64748b;font-size:13px;font-weight:500}
-.trust span{display:flex;align-items:center;gap:6px}
-.features{max-width:760px;margin:22px auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:0 18px 10px}
-.features div{background:#f8fafc;border:1px solid #eef2f7;padding:18px;border-radius:14px;text-align:left}
-.features div b{font-size:14px;display:block;margin-bottom:4px}
-.features div p{font-size:13px;color:#64748b;line-height:1.5}
-footer{text-align:center;padding:28px 18px;color:#94a3b8;font-size:13px;border-top:1px solid #f1f5f9;margin-top:10px;line-height:1.8}
-footer a{color:#475569;text-decoration:none}
-@media(max-width:600px){.tools-grid{grid-template-columns:1fr 1fr;gap:12px}.features{grid-template-columns:1fr}.hero h1{font-size:30px}.tool-card{padding:20px 8px}.tool-card .icon{width:50px;height:50px}}
-.sidenav{height:100%;width:0;position:fixed;z-index:999;top:0;left:0;background:#fff;overflow-x:hidden;transition:0.3s;padding-top:60px;box-shadow:5px 0 20px rgba(0,0,0,.15)}
-.sidenav a{padding:14px 22px;text-decoration:none;font-size:15px;color:#334155;display:block;border-bottom:1px solid #f8fafc;font-weight:600}
-.sidenav a:hover{background:#f8fafc;color:#2563eb}
-.sidenav .closebtn{position:absolute;top:10px;right:20px;font-size:28px;cursor:pointer}
-.sidenav .menu-logo{padding:0 22px 22px;font-size:19px;font-weight:800;color:#0f172a}
-.overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.35);z-index:998}
+.hero p{color:#64748b;margin-top:10px;font-size:15px;line-height:1.5}
+.grid{max-width:720px;margin:24px auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:0 15px}
+.card{background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:24px 10px;text-align:center;text-decoration:none;color:#111;transition:.2s}
+.card:hover{border-color:#2563eb;transform:translateY(-3px);box-shadow:0 12px 25px rgba(37,99,235,.10)}
+.card .ic{width:54px;height:54px;border-radius:14px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:25px}
+.card b{font-size:15px;display:block}
+.card span{font-size:13px;color:#64748b;display:block;margin-top:4px}
+.c1 .ic{background:#eef2ff}.c2 .ic{background:#f0fdf4}.c3 .ic{background:#fff7ed}.c4 .ic{background:#fdf2f8}.c5 .ic{background:#fef2f2}.c6 .ic{background:#f0f9ff}
+.trust{text-align:center;color:#64748b;font-size:13px;font-weight:500;margin:8px 0 20px}
+.features{max-width:720px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:0 15px}
+.features div{background:#fff;border:1px solid #eef2f7;padding:16px;border-radius:14px;text-align:center;font-size:14px}
+.features div b{display:block;margin-bottom:4px}
+.features div span{font-size:13px;color:#64748b}
+footer{text-align:center;padding:22px;color:#94a3b8;font-size:13px;line-height:1.8}
+footer a{color:#475569;text-decoration:none;font-weight:600}
+.footer-btns{margin-top:10px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.footer-btns a{background:#fff;border:1px solid #e2e8f0;padding:8px 16px;border-radius:100px;font-size:13px}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr}.hero h1{font-size:28px}.logo b{display:none}.nav a{padding:8px 12px;font-size:13px}}
 </style>
 </head>
 <body>
-<div id="overlay" class="overlay" onclick="closeNav()"></div>
-<div id="mySidenav" class="sidenav">
-<span class="closebtn" onclick="closeNav()">×</span>
-<div class="menu-logo">Tools Hub</div>
+
+<header>
+<div class="logo"><div class="logo-icon">T</div><b>Tools Hub</b></div>
+<div class="nav">
+<a href="index.html" class="nav-home">Home</a>
+<a href="contact.html" class="nav-contact">Contact Us</a>
+</div>
+</header>
+
+<div class="hero">
+<h1>Every tool you need,<br><span>in one place.</span></h1>
+<p>Convert, compress, resize and crop your images. Fast, private and completely free. No signup needed.</p>
+</div>
+
+<div class="grid">
+<a href="image-to-pdf.html" class="card c1"><div class="ic">📄</div><b>Image to PDF</b><span>Images to PDF</span></a>
+<a href="compress.html" class="card c2"><div class="ic">🗜️</div><b>Compress Image</b><span>Reduce Size</span></a>
+<a href="resize.html" class="card c3"><div class="ic">↔️</div><b>Resize Image</b><span>Passport / KB Size</span></a>
+<a href="jpg-to-png.html" class="card c4"><div class="ic">🖼️</div><b>JPG to PNG</b><span>Change Format</span></a>
+<a href="pdf-to-image.html" class="card c5"><div class="ic">📑</div><b>PDF to Image</b><span>PDF to JPG</span></a>
+<a href="crop.html" class="card c6"><div class="ic">✂️</div><b>Crop Image</b><span>Cut Photo</span></a>
+</div>
+
+<div class="trust">✓ No signup &nbsp; • &nbsp; ✓ 100% Private &nbsp; • &nbsp; ✓ Works on Mobile</div>
+
+<div class="features">
+<div><b>⚡ Super Fast</b><span>PDF in 2 Seconds</span></div>
+<div><b>🔒 100% Private</b><span>Files Never Leave Device</span></div>
+<div><b>📱 Mobile Friendly</b><span>Works on Every Phone</span></div>
+</div>
+
+<footer>
+© 2026 Tools Hub - Made for Everyone
+<div class="footer-btns">
 <a href="index.html">Home</a>
 <a href="privacy-policy.html">Privacy Policy</a>
 <a href="contact.html">Contact Us</a>
 <a href="about.html">About Us</a>
 </div>
+</footer>
 
-<header>
-<div style="display:flex;align-items:center;gap:12px"><button class="menu-btn" onclick="openNav()">☰</button><div class="logo"><span>T
+<!-- Firebase Analytics -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8C1XbKj5aIh5X0L8YlY7yA9tX4qDk",
+    authDomain: "imagetopdfconverteronlin.firebaseapp.com",
+    projectId: "imagetopdfconverteronlin",
+    storageBucket: "imagetopdfconverteronlin.firebasestorage.app",
+    messagingSenderId: "780464422965",
+    appId: "1:780464422965:web:a7c1d3fa3e9e1d70ba0ebc2",
+    measurementId: "G-PGPHH9XCM5"
+  };
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+</body>
+  </html>
