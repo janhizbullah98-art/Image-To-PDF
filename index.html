@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="google-site-verification" content="RnW2_hbGme5Upfbece_x3Pd1EnJy-ekb_wkh2XmJFyE" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image to PDF - Tools Hub</title>
+<title>Tools Hub - Free Online Image Tools</title>
+<meta name="description" content="Tools Hub - Free online tools - Image to PDF, Compress Image, Resize Image, JPG to PNG, PDF to Image, Crop Image.">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f1f5f9;color:#111}
-header{background:#fff;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-header b{font-size:22px;color:#2563eb}
-.menu-btn{font-size:24px;cursor:pointer;background:none;border:none;padding:5px 10px}
-.hero{text-align:center;padding:30px 15px 10px}
-.hero h1{font-size:30px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#ffffff;color:#1e293b}
+header{background:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eef2f7;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#0f172a}
+.logo span{background:#2563eb;color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+header .badge{font-size:12px;font-weight:600;background:#f1f5f9;color:#475569;padding:7px 12px;border-radius:100px;border:1px solid #e2e8f0}
+.menu-btn{font-size:22px;cursor:pointer;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:6px 10px}
+.hero{text-align:center;padding:48px 20px 10px;max-width:700px;margin:0 auto}
+.hero h1{font-size:38px;line-height:1.15;font-weight:800;letter-spacing:-1px;color:#0f172a}
 .hero h1 span{color:#2563eb}
-.hero p{color:#64748b;margin-top:8px}
-.box{max-width:700px;margin:20px auto;background:#fff;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
-.upload{border:2px dashed #2563eb;border-radius:12px;padding:30px;text-align:center;cursor:pointer;background:#eff6ff}
-.upload h3{margin-bottom:5px}
-.upload p{font-size:13px;color:#64748b}
-#preview{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
-#preview img{width:90px;height:90px;object-fit:cover;border-radius:8px;border:1px solid #ddd}
-.controls{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap}
-select,button{padding:12px;border-radius:10px;border:1px solid #ddd;font-size:15px}
-select{flex:1}
-#convertBtn{flex:1;background:#2563eb;color:#fff;border:none;font-weight:bold;cursor:pointer}
-#convertBtn:disabled{background:#94a3b8}
-#clearBtn{background:#fee2e2;color:#991b1b;border:none;cursor:pointer}
-#status{text-align:center;margin-top:12px;font-size:14px;color:#16a34a;font-weight:bold}
-.back{text-align:center;margin-top:10px}
-.back a{color:#2563eb;text-decoration:none;font-weight:bold}
-footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
-.sidenav{height:100%;width:0;position:fixed;z-index:999;top:0;left:0;background:#fff;overflow-x:hidden;transition:0.3s;padding-top:60px;box-shadow:5px 0 20px rgba(0,0,0,.2)}
-.sidenav a{padding:14px 20px;text-decoration:none;font-size:16px;color:#1e293b;display:flex;align-items:center;gap:12px;border-bottom:1px solid #f1f5f9;font-weight:500}
-.sidenav a:hover{background:#eff6ff;color:#2563eb}
-.sidenav a svg{width:20px;height:20px}
-.sidenav .closebtn{position:absolute;top:10px;right:20px;font-size:30px;cursor:pointer}
-.sidenav .menu-logo{padding:0 20px 20px;font-size:20px;font-weight:bold;color:#2563eb}
-.overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:998}
+.hero p{color:#64748b;margin-top:12px;font-size:16px;line-height:1.5}
+.tools-grid{max-width:760px;margin:32px auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:0 18px}
+.tool-card{background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:24px 14px;text-align:center;text-decoration:none;color:#0f172a;transition:.2s;display:flex;flex-direction:column;align-items:center}
+.tool-card:hover{border-color:#2563eb;box-shadow:0 12px 30px rgba(37,99,235,.10);transform:translateY(-2px)}
+.tool-card .icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.tool-card .icon svg{width:26px;height:26px;stroke-width:1.7}
+.tool-card b{font-size:15px;font-weight:700}
+.tool-card span{font-size:13px;color:#64748b;margin-top:4px;line-height:1.4}
+.c1 .icon{background:#eef2ff}.c1 .icon svg{stroke:#4f46e5}
+.c2 .icon{background:#f0fdf4}.c2 .icon svg{stroke:#15803d}
+.c3 .icon{background:#fff7ed}.c3 .icon svg{stroke:#ea580c}
+.c4 .icon{background:#fdf2f8}.c4 .icon svg{stroke:#be185d}
+.c5 .icon{background:#fef2f2}.c5 .icon svg{stroke:#dc2626}
+.c6 .icon{background:#f0f9ff}.c6 .icon svg{stroke:#0369a1}
+.trust{max-width:760px;margin:28px auto 10px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;padding:0 18px;color:#64748b;font-size:13px;font-weight:500}
+.trust span{display:flex;align-items:center;gap:6px}
+.features{max-width:760px;margin:22px auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:0 18px 10px}
+.features div{background:#f8fafc;border:1px solid #eef2f7;padding:18px;border-radius:14px;text-align:left}
+.features div b{font-size:14px;display:block;margin-bottom:4px}
+.features div p{font-size:13px;color:#64748b;line-height:1.5}
+footer{text-align:center;padding:28px 18px;color:#94a3b8;font-size:13px;border-top:1px solid #f1f5f9;margin-top:10px;line-height:1.8}
+footer a{color:#475569;text-decoration:none}
+@media(max-width:600px){.tools-grid{grid-template-columns:1fr 1fr;gap:12px}.features{grid-template-columns:1fr}.hero h1{font-size:30px}.tool-card{padding:20px 8px}.tool-card .icon{width:50px;height:50px}}
+.sidenav{height:100%;width:0;position:fixed;z-index:999;top:0;left:0;background:#fff;overflow-x:hidden;transition:0.3s;padding-top:60px;box-shadow:5px 0 20px rgba(0,0,0,.15)}
+.sidenav a{padding:14px 22px;text-decoration:none;font-size:15px;color:#334155;display:block;border-bottom:1px solid #f8fafc;font-weight:600}
+.sidenav a:hover{background:#f8fafc;color:#2563eb}
+.sidenav .closebtn{position:absolute;top:10px;right:20px;font-size:28px;cursor:pointer}
+.sidenav .menu-logo{padding:0 22px 22px;font-size:19px;font-weight:800;color:#0f172a}
+.overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.35);z-index:998}
 </style>
 </head>
 <body>
 <div id="overlay" class="overlay" onclick="closeNav()"></div>
-<div id="mySidenav" class="sidenav"><span class="closebtn" onclick="closeNav()">×</span><div class="menu-logo">Tools Hub</div><a href="index.html">🏠 Home</a><a href="privacy-policy.html">Privacy Policy</a><a href="contact.html">Contact Us</a><a href="about.html">About Us</a></div>
-<header><button class="menu-btn" onclick="openNav()">☰</button><b>Tools Hub</b><span style="font-size:13px;background:#dcfce7;color:#166534;padding:6px 12px;border-radius:20px">100% Free</span></header>
-<div class="hero"><h1>Image to PDF<br><span>Free & Fast</span></h1><p>Select your images and create a PDF in one click.</p></div>
-<div class="box"><div class="upload" onclick="document.getElementById('fileInput').click()"><h3>Click to Select Images</h3><p>JPG, PNG, WEBP - All Supported</p><input type="file" id="fileInput" accept="image/*" multiple hidden></div><div id="preview"></div><div class="controls"><select id="size"><option value="a4">Page Size: A4</option><option value="fit">Page Size: Same as Image</option></select><button id="convertBtn" disabled>Convert to PDF ⬇</button><button id="clearBtn">Clear</button></div><div id="status"></div></div>
-<div class="back"><a href="index.html">← Back to All Tools</a></div>
-<footer>© 2026 Tools Hub</footer>
-<script>function openNav(){document.getElementById("mySidenav").style.width="260px";document.getElementById("overlay").style.display="block";}function closeNav(){document.getElementById("mySidenav").style.width="0";document.getElementById("overlay").style.display="none";}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
-let images=[];const input=document.getElementById('fileInput');const preview=document.getElementById('preview');const convertBtn=document.getElementById('convertBtn');const status=document.getElementById('status');
-input.addEventListener('change',e=>{for(let file of e.target.files){let reader=new FileReader();reader.onload=ev=>{images.push(ev.target.result);let img=document.createElement('img');img.src=ev.target.result;preview.appendChild(img);convertBtn.disabled=false;status.innerText=images.length+" Images Selected";};reader.readAsDataURL(file);}});
-document.getElementById('clearBtn').onclick=()=>{images=[];preview.innerHTML='';convertBtn.disabled=true;status.innerText='';input.value='';};
-convertBtn.onclick=async()=>{status.innerText="Creating PDF...";const {jsPDF}=window.jspdf;const size=document.getElementById('size').value;let pdf;if(size==='a4'){pdf=new jsPDF('p','mm','a4');}else{pdf=new jsPDF('p','mm',[210,297]);}for(let i=0;i<images.length;i++){if(i>0)pdf.addPage();if(size==='a4'){pdf.addImage(images[i],'JPEG',10,10,190,277,undefined,'FAST');}else{pdf.addImage(images[i],'JPEG',0,0,210,297,undefined,'FAST');}}pdf.save('my-images.pdf');status.innerText="PDF Downloaded!";};
-</script>
-</body>
-</html>
+<div id="mySidenav" class="sidenav">
+<span class="closebtn" onclick="closeNav()">×</span>
+<div class="menu-logo">Tools Hub</div>
+<a href="index.html">Home</a>
+<a href="privacy-policy.html">Privacy Policy</a>
+<a href="contact.html">Contact Us</a>
+<a href="about.html">About Us</a>
+</div>
+
+<header>
+<div style="display:flex;align-items:center;gap:12px"><button class="menu-btn" onclick="openNav()">☰</button><div class="logo"><span>T
