@@ -40,13 +40,13 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 
 <div class="hero">
 <h1>Convert Image to PDF<br><span>Free & Fast</span></h1>
-<p>Apni photos select karo, ek click me PDF bana lo. Koi data save nahi hota.</p>
+<p>Select your images and create a PDF in one click. No data is saved.</p>
 </div>
 
 <div class="box">
 <div class="upload" onclick="document.getElementById('fileInput').click()">
-<h3>📁 Click Karke Images Select Karo</h3>
-<p>JPG, PNG, WEBP - Sab Chalega - Multiple Images Bhi Select Kar Sakte Ho</p>
+<h3>📁 Click to Select Images</h3>
+<p>JPG, PNG, WEBP - All Supported - You Can Select Multiple Images</p>
 <input type="file" id="fileInput" accept="image/*" multiple hidden>
 </div>
 
@@ -55,7 +55,7 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 <div class="controls">
 <select id="size">
 <option value="a4">Page Size: A4</option>
-<option value="fit">Page Size: Image Jitni</option>
+<option value="fit">Page Size: Same as Image</option>
 </select>
 <button id="convertBtn" disabled>Convert to PDF ⬇</button>
 <button id="clearBtn">Clear</button>
@@ -64,9 +64,9 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 </div>
 
 <div class="features">
-<div>⚡ <b>Super Fast</b><br>2 Second Me PDF</div>
-<div>🔒 <b>100% Private</b><br>Photos Server Par Nahi Jati</div>
-<div>📱 <b>Mobile Friendly</b><br>Har Phone Me Chalega</div>
+<div>⚡ <b>Super Fast</b><br>PDF in 2 Seconds</div>
+<div>🔒 <b>100% Private</b><br>Images Never Leave Your Device</div>
+<div>📱 <b>Mobile Friendly</b><br>Works on Every Phone</div>
 </div>
 
 <footer>© 2026 ImageToPDF - Made for Everyone | <a href="privacy-policy.html" style="color:#2563eb">Privacy Policy</a> | <a href="contact.html" style="color:#2563eb">Contact Us</a></footer>
@@ -99,7 +99,7 @@ document.getElementById('clearBtn').onclick = () => {
 };
 
 convertBtn.onclick = async () => {
-  status.innerText = "PDF Ban Rahi Hai... Wait Karo...";
+  status.innerText = "Creating PDF... Please Wait...";
   const { jsPDF } = window.jspdf;
   const size = document.getElementById('size').value;
   let pdf;
@@ -109,32 +109,4 @@ convertBtn.onclick = async () => {
   for(let i=0;i<images.length;i++){
     if(i>0) pdf.addPage();
     if(size==='a4'){
-      pdf.addImage(images[i],'JPEG',10,10,190,277,undefined,'FAST');
-    } else {
-      pdf.addImage(images[i],'JPEG',0,0,210,297,undefined,'FAST');
-    }
-  }
-  pdf.save('my-images.pdf');
-  status.innerText = "✅ PDF Download Ho Gayi!";
-};
-</script>
-
-<!-- Firebase Analytics -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
-  const firebaseConfig = {
-    apiKey: "AIzaSyD8C1XbKj5aIh5X0L8YlY7yA9tX4qDk",
-    authDomain: "imagetopdfconverteronlin.firebaseapp.com",
-    projectId: "imagetopdfconverteronlin",
-    storageBucket: "imagetopdfconverteronlin.firebasestorage.app",
-    messagingSenderId: "780464422965",
-    appId: "1:780464422965:web:a7c1d3fa3e9e1d70ba0ebc2",
-    measurementId: "G-PGPHH9XCM5"
-  };
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
-</body>
-  </html>
+      pdf.addImage(images[i],'JPEG',10,10,190,
