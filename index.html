@@ -11,6 +11,7 @@ body{background:#f1f5f9;color:#111}
 header{background:#fff;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08)}
 header b{font-size:22px;color:#2563eb}
 header span{font-size:13px;background:#dcfce7;color:#166534;padding:6px 12px;border-radius:20px}
+.menu-btn{font-size:24px;cursor:pointer;background:none;border:none;padding:5px 10px}
 .hero{text-align:center;padding:40px 15px 20px}
 .hero h1{font-size:32px;line-height:1.2}
 .hero h1 span{color:#2563eb}
@@ -32,11 +33,30 @@ select{flex:1}
 .features div{background:#fff;padding:15px;border-radius:12px;text-align:center;font-size:14px}
 footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 @media(max-width:600px){.features{grid-template-columns:1fr}.hero h1{font-size:26px}}
+/* Side Menu */
+.sidenav{height:100%;width:0;position:fixed;z-index:999;top:0;left:0;background:#fff;overflow-x:hidden;transition:0.3s;padding-top:60px;box-shadow:5px 0 20px rgba(0,0,0,.2)}
+.sidenav a{padding:14px 20px;text-decoration:none;font-size:18px;color:#111;display:block;border-bottom:1px solid #f1f5f9}
+.sidenav a:hover{background:#eff6ff;color:#2563eb}
+.sidenav .closebtn{position:absolute;top:10px;right:20px;font-size:30px;cursor:pointer;border:none}
+.overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:998}
 </style>
 </head>
 <body>
 
-<header><b>IMG ➜ PDF</b><span>100% Free • No Signup</span></header>
+<div id="overlay" class="overlay" onclick="closeNav()"></div>
+<div id="mySidenav" class="sidenav">
+<span class="closebtn" onclick="closeNav()">×</span>
+<a href="index.html">🏠 Home</a>
+<a href="privacy-policy.html">🔒 Privacy Policy</a>
+<a href="contact.html">📩 Contact Us</a>
+<a href="about.html">ℹ️ About Us</a>
+</div>
+
+<header>
+<button class="menu-btn" onclick="openNav()">☰</button>
+<b>IMG ➜ PDF</b>
+<span>100% Free • No Signup</span>
+</header>
 
 <div class="hero">
 <h1>Convert Image to PDF<br><span>Free & Fast</span></h1>
@@ -49,9 +69,7 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 <p>JPG, PNG, WEBP - All Supported - You Can Select Multiple Images</p>
 <input type="file" id="fileInput" accept="image/*" multiple hidden>
 </div>
-
 <div id="preview"></div>
-
 <div class="controls">
 <select id="size">
 <option value="a4">Page Size: A4</option>
@@ -69,7 +87,13 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 <div>📱 <b>Mobile Friendly</b><br>Works on Every Phone</div>
 </div>
 
-<footer>© 2026 ImageToPDF - Made for Everyone | <a href="privacy-policy.html" style="color:#2563eb">Privacy Policy</a> | <a href="contact.html" style="color:#2563eb">Contact Us</a></footer>
+<footer>© 2026 ImageToPDF - Made for Everyone | <a href="privacy-policy.html" style="color:#2563eb">Privacy Policy</a> | <a href="contact.html" style="color:#2563eb">Contact Us</a> | <a href="about.html" style="color:#2563eb">About Us</a></footer>
+
+<script>
+function openNav(){document.getElementById("mySidenav").style.width="260px";document.getElementById("overlay").style.display="block";}
+function closeNav(){document.getElementById("mySidenav").style.width="0";document.getElementById("overlay").style.display="none";}
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 let images = [];
@@ -77,7 +101,6 @@ const input = document.getElementById('fileInput');
 const preview = document.getElementById('preview');
 const convertBtn = document.getElementById('convertBtn');
 const status = document.getElementById('status');
-
 input.addEventListener('change', e => {
   for(let file of e.target.files){
     let reader = new FileReader();
@@ -92,12 +115,10 @@ input.addEventListener('change', e => {
     reader.readAsDataURL(file);
   }
 });
-
 document.getElementById('clearBtn').onclick = () => {
   images = []; preview.innerHTML=''; convertBtn.disabled=true; status.innerText='';
   input.value='';
 };
-
 convertBtn.onclick = async () => {
   status.innerText = "Creating PDF... Please Wait...";
   const { jsPDF } = window.jspdf;
@@ -105,8 +126,32 @@ convertBtn.onclick = async () => {
   let pdf;
   if(size === 'a4'){ pdf = new jsPDF('p','mm','a4'); }
   else { pdf = new jsPDF('p','mm',[210,297]); }
-
   for(let i=0;i<images.length;i++){
     if(i>0) pdf.addPage();
-    if(size==='a4'){
-      pdf.addImage(images[i],'JPEG',10,10,190,
+    if(size==='a4'){ pdf.addImage(images[i],'JPEG',10,10,190,277,undefined,'FAST'); }
+    else { pdf.addImage(images[i],'JPEG',0,0,210,297,undefined,'FAST'); }
+  }
+  pdf.save('my-images.pdf');
+  status.innerText = "✅ PDF Downloaded Successfully!";
+};
+</script>
+
+<!-- Firebase Analytics -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8C1XbKj5aIh5X0L8YlY7yA9tX4qDk",
+    authDomain: "imagetopdfconverteronlin.firebaseapp.com",
+    projectId: "imagetopdfconverteronlin",
+    storageBucket: "imagetopdfconverteronlin.firebasestorage.app",
+    messagingSenderId: "780464422965",
+    appId: "1:780464422965:web:a7c1d3fa3e9e1d70ba0ebc2",
+    measurementId: "G-PGPHH9XCM5"
+  };
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+</body>
+</html>
