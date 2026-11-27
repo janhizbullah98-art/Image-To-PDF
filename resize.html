@@ -86,7 +86,7 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 <div id="preview"></div>
 <div class="controls">
 <select id="preset" onchange="setPreset()">
-<option value="">Custom Size - Khud Likho</option>
+<option value="">Custom Size - Enter Manually</option>
 <option value="300,300">Passport - 300 x 300</option>
 <option value="800,800">Instagram Post - 800 x 800</option>
 <option value="1080,1080">Instagram HD - 1080 x 1080</option>
@@ -95,8 +95,8 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 </select>
 </div>
 <div class="controls">
-<input type="number" id="newW" placeholder="Width - jaise 800">
-<input type="number" id="newH" placeholder="Height - jaise 600">
+<input type="number" id="newW" placeholder="Width - e.g. 800">
+<input type="number" id="newH" placeholder="Height - e.g. 600">
 </div>
 <div class="controls">
 <button id="resizeBtn" disabled>Resize Now ⬇</button>
@@ -153,7 +153,7 @@ document.getElementById('clearBtn').onclick = () => {
 resizeBtn.onclick = async () => {
   let w = parseInt(document.getElementById('newW').value);
   let h = parseInt(document.getElementById('newH').value);
-  if(!w || !h){ alert('Pehle Width aur Height likho!'); return; }
+  if(!w || !h){ alert('Please enter Width and Height first!'); return; }
   status.innerText = "Resizing... Please Wait...";
   let cards = preview.querySelectorAll('.img-card');
   for(let i=0;i<filesList.length;i++){
