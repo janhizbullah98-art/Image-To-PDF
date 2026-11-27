@@ -54,10 +54,10 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 </head>
 <body>
 
-<div id="overlay" class="overlay" onclick="closeNav()"></div>
+<div id="overlay" class="overlay"></div>
 
 <div id="mySidenav" class="sidenav">
-<div class="menu-head"><div><b>Tools Hub</b><small>Free Online Tools</small></div><span class="closebtn" onclick="closeNav()">×</span></div>
+<div class="menu-head"><div><b>Tools Hub</b><small>Free Online Tools</small></div><span class="closebtn" id="closeBtn">×</span></div>
 <div class="menu-label">MENU</div>
 <a href="index.html"><span class="m-ic m-home">🏠</span><span>Home<small>All tools in one place</small></span></a>
 <a href="#"><span class="m-ic m-about">ℹ️</span><span>About Us<small>Who we are</small></span></a>
@@ -67,7 +67,7 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 </div>
 
 <header>
-<button class="menu-btn" onclick="openNav()">☰</button>
+<button class="menu-btn" id="menuBtn">☰</button>
 <b>PDF to Image</b>
 <span>100% Free</span>
 </header>
@@ -89,4 +89,79 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:13px}
 <option value="image/png">Download As: PNG</option>
 <option value="image/jpeg">Download As: JPG</option>
 </select>
-<button id="convertBtn" disabled>Convert Now
+<button id="convertBtn" disabled>Convert Now ⬇</button>
+<button id="clearBtn">Clear</button>
+</div>
+<div id="status"></div>
+</div>
+
+<div class="features">
+<div>⚡ <b>Super Fast</b><br>Convert in 2 Seconds</div>
+<div>🔒 <b>100% Private</b><br>Files Never Leave Your Device</div>
+<div>📱 <b>Mobile Friendly</b><br>Works on Every Phone</div>
+</div>
+
+<footer>© 2026 Tools Hub - Made for Everyone</footer>
+
+<script>
+function openNav(){document.getElementById("mySidenav").style.width="280px";document.getElementById("overlay").style.display="block";}
+function closeNav(){document.getElementById("mySidenav").style.width="0";document.getElementById("overlay").style.display="none";}
+document.getElementById("menuBtn").addEventListener("click", openNav);
+document.getElementById("closeBtn").addEventListener("click", closeNav);
+document.getElementById("overlay").addEventListener("click", closeNav);
+</script>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+let pdfFile = null;
+const input = document.getElementById('fileInput');
+const preview = document.getElementById('preview');
+const convertBtn = document.getElementById('convertBtn');
+const status = document.getElementById('status');
+
+input.addEventListener('change', e => {
+  pdfFile = e.target.files[0];
+  if(!pdfFile) return;
+  preview.innerHTML = '';
+  status.innerText = "Selected: " + pdfFile.name + " - Ready To Convert";
+  convertBtn.disabled = false;
+});
+
+document.getElementById('clearBtn').onclick = () => {
+  pdfFile=null; preview.innerHTML=''; convertBtn.disabled=true; status.innerText=''; input.value='';
+};
+
+convertBtn.onclick = async () => {
+  if(!pdfFile){ alert('Please select a PDF file first!'); return; }
+  status.innerText = "Converting... Please Wait...";
+  preview.innerHTML = '';
+  let format = document.getElementById('format').value;
+  let ext = format === 'image/png' ? 'png' : 'jpg';
+  try{
+    let arrayBuffer = await pdfFile.arrayBuffer();
+    let pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+    status.innerText = "Found " + pdf.numPages + " Pages - Converting...";
+    for(let i=1; i<=pdf.numPages; i++){
+      let page = await pdf.getPage(i);
+      let viewport = page.getViewport({scale: 2});
+      let canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      let ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      await page.render({canvasContext: ctx, viewport: viewport}).promise;
+      let imgUrl = canvas.toDataURL(format, 0.95);
+      let div = document.createElement('div');
+      div.className='img-card';
+      div.innerHTML = `<img src="${imgUrl}"><small>Page ${i} of ${pdf.numPages}</small><a href="${imgUrl}" download="page-${i}.${ext}">Download ⬇</a>`;
+      preview.appendChild(div);
+    }
+    status.innerText = "✅ Converted Successfully! Download Buttons Below Images";
+  }catch(err){
+    status.innerText = "Error: Could not read this PDF. Please try another PDF.";
+  }
+};
+</script>
+</body>
+                                                  </html>
