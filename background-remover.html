@@ -150,13 +150,11 @@ document.getElementById("closeBtn").addEventListener("click", closeNav);
 document.getElementById("overlay").addEventListener("click", closeNav);
 </script>
 
-<!-- PART 1 - PHOTO SELECT - YE HAMESHA CHALEGA, AI SE ALAG HAI -->
 <script>
 let selectedFile = null;
 let resultBlob = null;
 let selectedBg = "transparent";
 let finalDataUrl = null;
-
 const input = document.getElementById('fileInput');
 const origImg = document.getElementById('origImg');
 const resultImg = document.getElementById('resultImg');
@@ -176,7 +174,6 @@ function getBgName(bg){
   if(bg==="#00FFFF") return "Chroma Cyan #00FFFF";
   return "Color " + bg;
 }
-
 function applyBg(){
   if(!resultBlob) return;
   selectedColorText.innerText = "Selected: " + getBgName(selectedBg);
@@ -199,7 +196,6 @@ function applyBg(){
     img.src = URL.createObjectURL(resultBlob);
   }
 }
-
 document.querySelectorAll('.bg-options button').forEach(function(btn){
   btn.addEventListener('click', function(){
     document.querySelectorAll('.bg-options button').forEach(function(b){ b.classList.remove('active'); });
@@ -208,25 +204,18 @@ document.querySelectorAll('.bg-options button').forEach(function(btn){
     applyBg();
   });
 });
-
 colorWheel.addEventListener('input', function(){
   selectedBg = colorWheel.value;
   document.querySelectorAll('.bg-options button').forEach(function(b){ b.classList.remove('active'); });
   applyBg();
 });
-
-// Drag Drop - Desktop
 dropZone.addEventListener('dragover', function(e){ e.preventDefault(); dropZone.style.background='#dbeafe'; });
 dropZone.addEventListener('dragleave', function(){ dropZone.style.background='#eff6ff'; });
 dropZone.addEventListener('drop', function(e){
   e.preventDefault();
   dropZone.style.background='#eff6ff';
-  if(e.dataTransfer.files.length > 0){
-    showImage(e.dataTransfer.files[0]);
-  }
+  if(e.dataTransfer.files.length > 0){ showImage(e.dataTransfer.files[0]); }
 });
-
-// YE FUNCTION PHOTO KO SHOW KAREGA - FileReader SE, JO HAR PHONE PAR CHALTA HAI
 function showImage(file){
   selectedFile = file;
   resultBlob = null;
@@ -244,20 +233,15 @@ function showImage(file){
   };
   reader.readAsDataURL(file);
 }
-
 input.addEventListener('change', function(e){
-  if(e.target.files && e.target.files[0]){
-    showImage(e.target.files[0]);
-  }
+  if(e.target.files && e.target.files[0]){ showImage(e.target.files[0]); }
 });
-
 document.getElementById('clearBtn').onclick = function(){
   selectedFile=null; resultBlob=null; origImg.style.display='none'; resultImg.style.display='none';
   origText.innerText='No image selected'; resultText.innerText='Result will show here';
   removeBtn.disabled=true; downloadBtn.style.display='none'; statusEl.innerText=''; input.value='';
   document.getElementById('bgSection').style.display='none';
 };
-
 downloadBtn.onclick = function(){
   if(!finalDataUrl) return;
   let a = document.createElement('a');
@@ -268,7 +252,6 @@ downloadBtn.onclick = function(){
 };
 </script>
 
-<!-- PART 2 - AI SIRF REMOVE BUTTON PAR LOAD HOGA -->
 <script>
 document.getElementById('removeBtn').onclick = async function(){
   if(!selectedFile){ alert('Please select an image first!'); return; }
@@ -277,8 +260,15 @@ document.getElementById('removeBtn').onclick = async function(){
   btn.innerText = "Removing... Please Wait...";
   statusEl.innerText = "AI is Loading... First time may take 20-30 seconds...";
   try{
-    const mod = await import("https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/dist/index.mjs");
-    resultBlob = await mod.removeBackground(selectedFile);
+    const mod = await import("https://esm.sh/@imgly/background-removal@1.5.5");
+    resultBlob = await mod.removeBackground(selectedFile, {
+      progress: (key, current, total) => {
+        if(total > 0){
+          let p = Math.round((current/total)*100);
+          statusEl.innerText = "AI Downloading... " + p + "% - Please Wait...";
+        }
+      }
+    });
     selectedBg = "transparent";
     applyBg();
     resultImg.style.display='block';
@@ -288,7 +278,7 @@ document.getElementById('removeBtn').onclick = async function(){
     downloadBtn.style.display='block';
     downloadBtn.innerText = "Download PNG ⬇";
   }catch(err){
-    statusEl.innerText = "Error: AI failed. Check internet and try again with another photo.";
+    statusEl.innerText = "Error: AI failed. Check internet and try again.";
     alert("AI Error: " + err.message);
   }
   btn.disabled = false;
@@ -296,4 +286,4 @@ document.getElementById('removeBtn').onclick = async function(){
 };
 </script>
 </body>
-                                     </html>
+  </html>
